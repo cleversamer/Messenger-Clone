@@ -51,8 +51,8 @@ const App = () => {
         </FormControl>
       </form>
 
-      {messages.map((props) => (
-        <Message key={props.id} {...props} />
+      {messages.map((message) => (
+        <Message key={message.id} username={username} message={message} />
       ))}
     </div>
   );
