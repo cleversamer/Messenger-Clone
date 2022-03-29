@@ -6,7 +6,7 @@ Not live yet...
 
 ## Description
 
-WhatsApp Clone with React & Firebase
+Facebook Messenger Clone with React & Firebase
 
 ## Getting Started
 
