@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { firestore } from "firebase";
+import db from "./firebase";
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
-import Message from "./components/Message";
+import Messages from "./components/Messages";
 import "./css/app.css";
-
-let lastId = 1;
 
 const App = () => {
   const [input, setInput] = useState("");
@@ -11,24 +11,33 @@ const App = () => {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
+    db.collection("messages")
+      .orderBy("timestamp", "asc")
+      .onSnapshot((snapshot) => {
+        setMessages(
+          snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        );
+      });
+  }, []);
+
+  useEffect(() => {
     setUsername(prompt("Enter your username").substring(0, 16));
-    setMessages([
-      { id: lastId++, username: "Samer", text: "Hey guys!!!" },
-      { id: lastId++, username: "Sonny", text: "Hellooooo" },
-      { id: lastId++, username: "Qazi", text: "This is a Messenger Clone" },
-    ]);
   }, []);
 
   const sendMessage = (e) => {
     e.preventDefault();
-    setMessages([...messages, { id: lastId++, username, text: input }]);
+
+    db.collection("messages").add({
+      message: input,
+      username,
+      timestamp: firestore.FieldValue.serverTimestamp(),
+    });
+
     setInput("");
   };
 
   return (
     <div className="app">
-      <h1>Hello {username}</h1>
-
       <form>
         <FormControl>
           <InputLabel>Send a message...</InputLabel>
@@ -51,9 +60,7 @@ const App = () => {
         </FormControl>
       </form>
 
-      {messages.map((message) => (
-        <Message key={message.id} username={username} message={message} />
-      ))}
+      <Messages messages={messages} username={username} />
     </div>
   );
 };

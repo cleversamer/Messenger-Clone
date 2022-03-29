@@ -12,4 +12,6 @@ const config = {
 
 const app = initializeApp(config);
 
-export const db = app.firestore();
+const db = app.firestore();
+
+export default db;

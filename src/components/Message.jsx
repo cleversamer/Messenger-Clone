@@ -5,13 +5,13 @@ import "../css/message.css";
 const Message = ({ username, message }) => {
   const isUser = username === message.username;
 
+  const getMessageClasses = () => {
+    return `message ${isUser && "message-user"}`;
+  };
+
   const getCardClasses = () => {
     const type = `message__${isUser ? "user-card" : "guest-card"}`;
     return `message__card ${type}`;
-  };
-
-  const getMessageClasses = () => {
-    return `message ${isUser && "message-user"}`;
   };
 
   return (
@@ -19,7 +19,7 @@ const Message = ({ username, message }) => {
       <Card className={getCardClasses()}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            {message.username}: {message.text}
+            {message.username}: {message.message}
           </Typography>
         </CardContent>
       </Card>
