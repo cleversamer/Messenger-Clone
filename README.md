@@ -15,6 +15,9 @@ Facebook Messenger Clone with React & Firebase
 - React
 - React Router DOM
 - Firebase
+- MaterialUI
+- React Flip Move
+- React Loading Dot
 
 ### Installing
 
