@@ -8,6 +8,7 @@
     "firebase": "^7.18.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-flip-move": "^3.0.4",
     "react-loading-dot": "^1.0.6",
     "react-scripts": "5.0.0"
   },

@@ -1,5 +1,4 @@
 .messages-container {
-  width: 100vw;
-  min-width: 300px;
+  width: 100%;
   max-width: 768px;
 }

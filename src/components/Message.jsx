@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import "../css/message.css";
 
-const Message = ({ username, message }) => {
+const Message = forwardRef(({ username, message }, ref) => {
   const isUser = username === message.username;
 
   const getMessageClasses = () => {
@@ -15,7 +15,7 @@ const Message = ({ username, message }) => {
   };
 
   return (
-    <div className={getMessageClasses()}>
+    <div ref={ref} className={getMessageClasses()}>
       <Card className={getCardClasses()}>
         <CardContent>
           <Typography variant="h5" component="h2">
@@ -25,6 +25,6 @@ const Message = ({ username, message }) => {
       </Card>
     </div>
   );
-};
+});
 
 export default Message;
