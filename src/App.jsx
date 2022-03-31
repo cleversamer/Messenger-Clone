@@ -33,15 +33,14 @@ const App = () => {
 
   const getUsernameInput = (message) => {
     try {
-      const user = prompt(message || "Enter your username").substring(0, 16);
-      const condition = user.length >= 3 && user.length <= 16;
-      if (!condition)
-        return getUsernameInput("Username should be 3 to 16 characters");
-
-      return user;
-    } catch (ex) {
-      return getUsernameInput("Please enter a username");
-    }
+      const user = prompt(message || "Enter your username");
+      const condition = user && user.length >= 3 && user.length <= 16;
+      console.log("condition", condition);
+      console.log("user", user);
+      return condition
+        ? user
+        : getUsernameInput("Username should be 3 to 16 characters");
+    } catch (ex) {}
   };
 
   const sendMessage = (e) => {
