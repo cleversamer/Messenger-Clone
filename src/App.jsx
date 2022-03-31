@@ -13,30 +13,47 @@ const App = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    db.collection("messages")
-      .orderBy("timestamp", "asc")
-      .onSnapshot((snapshot) => {
-        setMessages(
-          snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-        );
-        setLoading(false);
-      });
+    try {
+      db.collection("messages")
+        .orderBy("timestamp", "asc")
+        .onSnapshot((snapshot) => {
+          setMessages(
+            snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+          );
+          setLoading(false);
+        });
+    } catch (ex) {}
   }, []);
 
   useEffect(() => {
     try {
-      setUsername(prompt("Enter your username").substring(0, 16));
+      setUsername(getUsernameInput());
     } catch (ex) {}
   }, []);
+
+  const getUsernameInput = (message) => {
+    try {
+      const user = prompt(message || "Enter your username").substring(0, 16);
+      const condition = user.length >= 3 && user.length <= 16;
+      if (!condition)
+        return getUsernameInput("Username should be 3 to 16 characters");
+
+      return user;
+    } catch (ex) {
+      return getUsernameInput("Please enter a username");
+    }
+  };
 
   const sendMessage = (e) => {
     e.preventDefault();
 
-    db.collection("messages").add({
-      message: input,
-      username,
-      timestamp: firestore.FieldValue.serverTimestamp(),
-    });
+    try {
+      db.collection("messages").add({
+        message: input,
+        username,
+        timestamp: firestore.FieldValue.serverTimestamp(),
+      });
+    } catch (ex) {}
 
     setInput("");
   };
@@ -45,6 +62,8 @@ const App = () => {
 
   return (
     <div className="app">
+      <Messages messages={messages} username={username} />
+
       <form>
         <FormControl>
           <InputLabel>Send a message...</InputLabel>
@@ -62,12 +81,10 @@ const App = () => {
             color="primary"
             onClick={sendMessage}
           >
-            Send Message
+            Send
           </Button>
         </FormControl>
       </form>
-
-      <Messages messages={messages} username={username} />
     </div>
   );
 };
