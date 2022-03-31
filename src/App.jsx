@@ -35,8 +35,6 @@ const App = () => {
     try {
       const user = prompt(message || "Enter your username");
       const condition = user && user.length >= 3 && user.length <= 16;
-      console.log("condition", condition);
-      console.log("user", user);
       return condition
         ? user
         : getUsernameInput("Username should be 3 to 16 characters");
@@ -57,9 +55,9 @@ const App = () => {
     setInput("");
   };
 
-  if (isLoading) return <Loading />;
-
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="app">
       <Messages messages={messages} username={username} />
 
