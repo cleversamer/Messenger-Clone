@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { firestore } from "firebase";
 import db from "./firebase";
-import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
+import { FormControl, InputLabel, Input, IconButton } from "@material-ui/core";
+import { Send } from "@material-ui/icons";
 import { Loading } from "react-loading-dot";
 import Messages from "./components/Messages";
 import "./css/app.css";
@@ -36,7 +37,7 @@ const App = () => {
 
   const getUsernameInput = (message) => {
     try {
-      const user = prompt(message || "Enter your username");
+      const user = prompt(message || "Enter your username").trim();
       const condition = user && user.length >= 3 && user.length <= 16;
       return condition
         ? user
@@ -80,15 +81,15 @@ const App = () => {
           />
         </FormControl>
 
-        <Button
+        <IconButton
           disabled={!input}
           type="submit"
           variant="contained"
           color="primary"
           onClick={sendMessage}
         >
-          Send
-        </Button>
+          <Send />
+        </IconButton>
       </form>
     </div>
   );

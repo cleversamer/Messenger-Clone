@@ -20,7 +20,7 @@ const Messages = ({ messages, username }) => {
         </FlipMove>
       ) : (
         <div className="messages-container__no-messages">
-          <h2>No messages sent.</h2>
+          <h2>No messages sent</h2>
         </div>
       )}
 

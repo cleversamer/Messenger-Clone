@@ -3,6 +3,8 @@
   width: 100%;
   max-width: 768px;
   overflow-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .messages-container__no-messages {
