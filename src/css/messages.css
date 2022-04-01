@@ -2,6 +2,7 @@
   flex: 1;
   width: 100%;
   max-width: 768px;
+  overflow-wrap: break-word;
 }
 
 .messages-container__no-messages {
