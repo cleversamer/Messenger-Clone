@@ -1,5 +1,47 @@
 .app {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  height: 100vh;
+}
+
+.app__logo {
+  width: 10vw;
+  max-width: 120px;
+  padding: 10px;
+}
+
+.app__form {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 768px;
+  display: flex;
+  justify-content: center;
+}
+
+.app__form-control {
+  flex: 1;
+  padding-right: 5px;
+}
+
+.app__form > button {
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .app__logo {
+    width: 20vw;
+  }
+
+  .app__form {
+    margin-bottom: 7vh;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .app__logo {
+    width: 25vw;
+  }
 }

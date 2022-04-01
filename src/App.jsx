@@ -47,49 +47,48 @@ const App = () => {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    const message = {
-      message: input,
-      username,
-      timestamp: firestore.FieldValue.serverTimestamp(),
-    };
-
-    setMessages([...messages, { id: message.timestamp, ...message }]);
-
     try {
-      setTimeout(() => {
-        db.collection("messages").add(message);
-      }, 1000);
+      db.collection("messages").add({
+        message: input,
+        username,
+        timestamp: firestore.FieldValue.serverTimestamp(),
+      });
     } catch (ex) {}
 
     setInput("");
   };
 
-  return isLoading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="app">
+      <img
+        className="app__logo"
+        src="https://seeklogo.com/images/F/facebook-messenger-new-2020-logo-30E9B0E51B-seeklogo.com.png"
+        alt="Messenger logo"
+      />
+
       <Messages messages={messages} username={username} />
 
-      <form>
-        <FormControl>
+      <form className="app__form">
+        <FormControl className="app__form-control">
           <InputLabel>Send a message...</InputLabel>
 
           <Input
             type="text"
             value={input}
+            autoFocus
             onChange={(e) => setInput(e.currentTarget.value)}
           />
-
-          <Button
-            disabled={!input}
-            type="submit"
-            variant="contained"
-            color="primary"
-            onClick={sendMessage}
-          >
-            Send
-          </Button>
         </FormControl>
+
+        <Button
+          disabled={!input}
+          type="submit"
+          variant="contained"
+          color="primary"
+          onClick={sendMessage}
+        >
+          Send
+        </Button>
       </form>
     </div>
   );
