@@ -60,11 +60,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <img
-        className="app__logo"
-        src="https://seeklogo.com/images/F/facebook-messenger-new-2020-logo-30E9B0E51B-seeklogo.com.png"
-        alt="Messenger logo"
-      />
+      <img className="app__logo" src="images/logo.png" alt="Messenger logo" />
 
       {isLoading ? (
         <Loading />
