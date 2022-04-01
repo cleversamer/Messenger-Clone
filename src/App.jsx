@@ -18,7 +18,10 @@ const App = () => {
         .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) => {
           setMessages(
-            snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }))
           );
           setLoading(false);
         });
@@ -44,12 +47,18 @@ const App = () => {
   const sendMessage = (e) => {
     e.preventDefault();
 
+    const message = {
+      message: input,
+      username,
+      timestamp: firestore.FieldValue.serverTimestamp(),
+    };
+
+    setMessages([...messages, { id: message.timestamp, ...message }]);
+
     try {
-      db.collection("messages").add({
-        message: input,
-        username,
-        timestamp: firestore.FieldValue.serverTimestamp(),
-      });
+      setTimeout(() => {
+        db.collection("messages").add(message);
+      }, 1000);
     } catch (ex) {}
 
     setInput("");
