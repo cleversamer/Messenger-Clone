@@ -12,11 +12,17 @@ const Messages = ({ messages, username }) => {
 
   return (
     <div className="messages-container">
-      <FlipMove>
-        {messages.map((message) => (
-          <Message key={message.id} username={username} message={message} />
-        ))}
-      </FlipMove>
+      {messages.length ? (
+        <FlipMove>
+          {messages.map((message) => (
+            <Message key={message.id} username={username} message={message} />
+          ))}
+        </FlipMove>
+      ) : (
+        <div className="messages-container__no-messages">
+          <h2>No messages sent.</h2>
+        </div>
+      )}
 
       <div ref={messagesRef} />
     </div>

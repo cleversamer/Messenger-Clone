@@ -34,10 +34,6 @@
   .app__logo {
     width: 20vw;
   }
-
-  .app__form {
-    margin-bottom: 7vh;
-  }
 }
 
 @media screen and (max-width: 380px) {

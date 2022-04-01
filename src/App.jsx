@@ -66,7 +66,11 @@ const App = () => {
         alt="Messenger logo"
       />
 
-      <Messages messages={messages} username={username} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Messages messages={messages} username={username} />
+      )}
 
       <form className="app__form">
         <FormControl className="app__form-control">

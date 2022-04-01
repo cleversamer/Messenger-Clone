@@ -3,3 +3,11 @@
   width: 100%;
   max-width: 768px;
 }
+
+.messages-container__no-messages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  opacity: 0.5;
+}

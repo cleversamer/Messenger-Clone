@@ -6,6 +6,7 @@
 
 .message__card > .MuiCardContent-root {
   padding: 10px !important;
+  border-radius: 20px;
 }
 
 .message-user {
@@ -16,6 +17,7 @@
 
 .message__user-card {
   background-color: #0b81ff !important;
+  color: #fff !important;
 }
 
 .message__guest-card {
