@@ -19,6 +19,12 @@
   max-width: 768px;
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.app__form .MuiIconButton-root {
+  padding: 5px;
+  margin-left: 5px;
 }
 
 .app__form-control {

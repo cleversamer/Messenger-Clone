@@ -18,6 +18,7 @@ Facebook Messenger Clone with React & Firebase
 - MaterialUI
 - React Flip Move
 - React Loading Dot
+- Emoji Picker React
 
 ### Installing
 

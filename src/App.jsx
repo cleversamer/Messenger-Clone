@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { firestore } from "firebase";
 import db from "./firebase";
 import { FormControl, Input, IconButton } from "@material-ui/core";
-import { Send } from "@material-ui/icons";
+import { Send, EmojiEmotions } from "@material-ui/icons";
+import EmojiPicker from "emoji-picker-react";
 import { Loading } from "react-loading-dot";
 import Messages from "./components/Messages";
 import "./css/app.css";
@@ -12,6 +13,8 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [isEmojiVisisble, setEmojiVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -59,6 +62,11 @@ const App = () => {
     setInput("");
   };
 
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
+    setInput(input + emojiObject.emoji);
+  };
+
   return (
     <div className="app">
       <img className="app__logo" src="images/logo.png" alt="Messenger logo" />
@@ -68,6 +76,8 @@ const App = () => {
       ) : (
         <Messages messages={messages} username={username} />
       )}
+
+      {isEmojiVisisble && <EmojiPicker onEmojiClick={onEmojiClick} />}
 
       <form className="app__form">
         <FormControl className="app__form-control">
@@ -88,6 +98,13 @@ const App = () => {
           onClick={sendMessage}
         >
           <Send />
+        </IconButton>
+
+        <IconButton
+          variant="contained"
+          onClick={() => setEmojiVisible(!isEmojiVisisble)}
+        >
+          <EmojiEmotions />
         </IconButton>
       </form>
     </div>
