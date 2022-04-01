@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { firestore } from "firebase";
 import db from "./firebase";
-import { FormControl, InputLabel, Input, IconButton } from "@material-ui/core";
+import { FormControl, Input, IconButton } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import { Loading } from "react-loading-dot";
 import Messages from "./components/Messages";
@@ -71,12 +71,11 @@ const App = () => {
 
       <form className="app__form">
         <FormControl className="app__form-control">
-          <InputLabel>Send a message...</InputLabel>
-
           <Input
             type="text"
             value={input}
             autoFocus
+            placeholder="Send a message..."
             onChange={(e) => setInput(e.currentTarget.value)}
           />
         </FormControl>
