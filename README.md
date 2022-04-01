@@ -2,7 +2,7 @@
 
 ## Live Demo 🔴
 
-Not live yet...
+[Click here...](https://samer-messenger.firebaseapp.com/)
 
 ## Description
 
@@ -16,6 +16,7 @@ Facebook Messenger Clone with React & Firebase
 - React Router DOM
 - Firebase
 - MaterialUI
+- MaterialUI Icons
 - React Flip Move
 - React Loading Dot
 - Emoji Picker React
